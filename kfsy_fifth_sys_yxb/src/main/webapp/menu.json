@@ -1,0 +1,127 @@
+[
+  {
+    "name": "系统管理",
+    "iconCls": "icon-bullet_wrench",
+    "href": "",
+    "children": [
+      {
+        "name": "定时数据备份",
+        "iconCls": "icon-database_yellow",
+        "href": "index.jsp"
+      },
+      {
+        "name": "系统日志",
+        "iconCls": "icon-medal_bronze_2",
+        "href": "index.jsp"
+      },
+      {
+        "name": "缓存情况",
+        "iconCls": "icon-page_white_stack",
+        "href": "index.jsp"
+      }
+    ]
+  },
+  {
+    "name": "管理员管理",
+    "iconCls": "icon-user_suit_black",
+    "href": "",
+    "children": [
+      {
+        "name": "管理员列表",
+        "iconCls": "icon-user_gray_cool",
+        "href": "index.jsp"
+      }
+    ]
+  },
+  {
+    "name": "用户管理",
+    "iconCls": "icon-user",
+    "href": "",
+    "children": [
+      {
+        "name": "用户信息",
+        "iconCls": "icon-user",
+        "href": "/edit/userlist.jsp"
+      },
+      {
+        "name": "用户反馈",
+        "iconCls": "icon-page_white_edit",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  },
+  {
+    "name": "药品管理",
+    "iconCls": "icon-box_picture",
+    "href": "",
+    "children": [
+      {
+        "name": "药品列表",
+        "iconCls": "icon-box_picture",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  },
+  {
+    "name": "类别管理",
+    "iconCls": "icon-anchor",
+    "href": "",
+    "children": [
+      {
+        "name": "类别列表",
+        "iconCls": "icon-anchor",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  },
+  {
+    "name": "订单管理",
+    "iconCls": "icon-cart",
+    "href": "",
+    "children": [
+      {
+        "name": "订单列表",
+        "iconCls": "icon-cart",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  },
+  {
+    "name": "评价管理",
+    "iconCls": "icon-chart_bar_edit",
+    "href": "",
+    "children": [
+      {
+        "name": "评价列表",
+        "iconCls": "icon-user_comment_2",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  },
+  {
+  "name": "主题管理",
+  "iconCls": "icon-tag_orange",
+  "href": "",
+  "children": [
+    {
+      "name": "主题列表",
+      "iconCls": "icon-tag_orange",
+      "href": "/edit/userlist.jsp"
+    }
+  ]
+  },
+  {
+    "name": "图片管理",
+    "iconCls": "icon-pictures",
+    "href": "",
+    "children": [
+      {
+        "name": "轮播图列表",
+        "iconCls": "icon-pictures",
+        "href": "/edit/userlist.jsp"
+      }
+    ]
+  }
+]
+
+
