@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--注解扫描器-->
+    <context:component-scan base-package="com">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--引入db.properties-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:com/baizhi/fifth/conf/db.properties"/>
+    </bean>
+    <!--配置数据源-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="driverClassName" value="${mysql.driver}"/>
+        <property name="url" value="${mysql.url}"/>
+        <property name="password" value="${mysql.password}"/>
+        <property name="username" value="${mysql.username}"/>
+    </bean>
+    <!--mybatis分页插件拦截器对象-->
+    <bean id="interceptor" class="com.github.pagehelper.PageInterceptor">
+        <property name="properties">
+            <value>
+                helperDialect=mysql
+            </value>
+        </property>
+    </bean>
+    <!--创建SQLSessionFactory-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <!-- 注入数据源对象 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 注入mapper文件 -->
+        <property name="mapperLocations" value="classpath:com/baizhi/fifth/mapper/*.xml" />
+        <!-- 起别名 -->
+        <property name="typeAliasesPackage" value="com.baizhi.fifth.entity" />
+        <!--配置分页插件-->
+        <property name="plugins">
+            <array>
+                <ref bean="interceptor"/>
+            </array>
+        </property>
+    </bean>
+    <!--创建dao-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.baizhi.fifth.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    <!-- 创建事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 配置注解式事务生效 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

@@ -3,9 +3,6 @@ package com.baizhi.fifth.entity;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/6/11.
- */
 public class Menu implements Serializable {
     private String id;
     private String name;
