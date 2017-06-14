@@ -53,4 +53,5 @@
     </bean>
     <!-- 配置注解式事务生效 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

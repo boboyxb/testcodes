@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.UserDAO">
+	<!-- 根据id查询用户 -->
+	<select id="queryOne" parameterType="String" resultType="user">
+		select id,name,phone,password,salt,registDate,status from t_user where id=#{id}
+	</select>
+	<!-- 查询所有用户 -->
+	<select id="queryAll" resultType="user">
+		select id,name,phone,password,salt,registDate,status from t_user
+	</select>
+	<!-- 根据名字查用户 -->
+	<select id="queryByName" parameterType="String" resultType="user">
+		select id,name,phone,password,salt,registDate,status from t_user where name=#{name}
+	</select>
+	<!-- 根据手机号查用户 -->
+	<select id="queryByPhone" parameterType="String" resultType="user">
+		select id,name,phone,password,salt,registDate,status from t_user where phone=#{phone}
+	</select>
+	<!-- 添加用户 -->
+	<insert id="insert" parameterType="user">
+		insert into t_user values(#{id},#{name},#{phone},#{password},#{salt},#{registDate},#{status})
+	</insert>
+	<delete id="delete" parameterType="String">
+		delete from t_user where id=#{id}
+	</delete>
+	<update id="update" parameterType="user">
+		update t_user set name=#{name},phone=#{phone},password=#{password},salt=#{salt},registDate=#{registDate},status=#{status} where id=#{id}
+	</update>
+</mapper>

@@ -10,17 +10,13 @@ import java.util.List;
 public class Type implements Serializable {
     private String id;//主键
     private String name;//姓名
-
+    private String href;
     private List<Product> products;
 
-    //set/get方法
-
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
+    public Type(String id, String name, String href, List<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.href = href;
         this.products = products;
     }
 
@@ -32,6 +28,16 @@ public class Type implements Serializable {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Type{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", href='" + href + '\'' +
+                ", products=" + products +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
@@ -40,20 +46,23 @@ public class Type implements Serializable {
         this.name = name;
     }
 
-    //构造方法
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public Type() {
-    }
 
-    public Type(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Type{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

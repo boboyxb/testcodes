@@ -1,17 +1,17 @@
 package com.baizhi.fifth.service.impl;
 
-import com.baizhi.fifth.dao.AddressDAO;
 import com.baizhi.fifth.dao.AdminDAO;
 import com.baizhi.fifth.entity.Admin;
 import com.baizhi.fifth.service.AdminService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import util.MD5Utils;
-import util.SaltUtils;
+import com.baizhi.kfsy.util.MD5Utils;
+import com.baizhi.kfsy.util.SaltUtils;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,7 +20,8 @@ public class AdminServiceImpl implements AdminService {
     //注入dao对象
     @Autowired
     private AdminDAO adminDAO;
-
+    //用page分页插件查询管理员
+    private Page<Admin> pages;
 
     /**
      * 根据id删除管理员
@@ -47,6 +48,7 @@ public class AdminServiceImpl implements AdminService {
      * @param admin
      */
     public void updateAdmin(Admin admin) {
+        admin.setPassword(MD5Utils.getMd5Code(admin.getPassword() + admin.getSalt()));
         adminDAO.update(admin);
     }
 
@@ -55,9 +57,10 @@ public class AdminServiceImpl implements AdminService {
      * @return
      */
     @Transactional(propagation= Propagation.SUPPORTS,readOnly=true)
-    public List<Admin> queryAllAdmin() {
-        List<Admin> list = adminDAO.queryAll();
-        return list;
+    public Page<Admin> queryAllAdmin(Integer rows,Integer page) {
+        pages=PageHelper.startPage(page,rows);
+        adminDAO.queryAll();
+        return pages;
     }
 
     /**
