@@ -21,9 +21,7 @@ public class AdminServiceImplTest {
 
     @org.junit.Test
     public void insertAdmin() throws Exception {
-        adminService.insertAdmin(new Admin(null,"yubobo","123456",null,1));
-        adminService.insertAdmin(new Admin(null,"yxb","123456",null,2));
-        adminService.insertAdmin(new Admin(null,"lijz","123456",null,2));
+        adminService.insertAdmin(new Admin("001","yuxb","123456",null,2));
     }
 
     @org.junit.Test

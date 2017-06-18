@@ -1,16 +1,13 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/themes/icon.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/IconExtension.css" />
-
     <script src="${pageContext.request.contextPath}/easyui/js/jquery.min.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/jquery.easyui.min.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/easyui-lang-zh_CN.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/form.validator.rules.js" ></script>
-    <script src="${pageContext.request.contextPath}/echar/echarts.js" ></script>
     <script>
         var $aa,$tt;
         $(function(){
@@ -35,26 +32,12 @@
         //添加选项卡
         function  addTabs(title,iconCls,href){
             if(!$tt.tabs('exists',title)){
-                if(title=='管理员列表'){
-                    if("${sessionScope.admin.level}"==1){
-                        $tt.tabs('add',{
-                            title:title,
-                            iconCls:iconCls,
-                            href:"${pageContext.request.contextPath}"+href,
-                            closable:true,
-                        });
-                    }else{
-                        alert("您不是1级管理员,无法使用此功能");
-                    }
-                }else{
-                    $tt.tabs('add',{
-                        title:title,
-                        iconCls:iconCls,
-                        href:"${pageContext.request.contextPath}"+href,
-                        closable:true,
-                    });
-                }
-
+                $tt.tabs('add',{
+                    title:title,
+                    iconCls:iconCls,
+                    href:"${pageContext.request.contextPath}"+href,
+                    closable:true,
+                });
             }else{
                 $tt.tabs('select',title)
             }
@@ -62,11 +45,13 @@
     </script>
 </head>
 <body class="easyui-layout" >
+<div data-options="region:'north',split:false" style="height: 40px" ></div>
 <div data-options="region:'west',title:'菜单栏',split:false" style="width:200px;">
     <div id="menus" class="easyui-accordion" data-options="fit:true"></div>
 </div>
-<div data-options="region:'center',title:'快方送药后台管理系统',iconCls:'icon-house'" style="padding:5px;background:#eee;">
+<div data-options="region:'center',title:'主页',iconCls:'icon-house'" style="padding:5px;background:#eee;">
     <div id="tt" class="easyui-tabs" data-options="fit:true"></div>
 </div>
+<div data-options="region:'south',split:false" style="height: 40px" ></div>
 </body>
 </html>
