@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.OrderDAO">
+	<resultMap id="ordermap" type="order">
+		<id column="id" property="id" />
+		<result column="num" property="num" />
+		<result column="elseMessage" property="elseMessage" />
+		<result column="status" property="status" />
+		<result column="createTime" property="createTime" />
+		<result column="total" property="total" />
+		<association property="address" javaType="address" select="com.baizhi.fifth.dao.AddressDAO.queryOne" column="addressId"/>
+		<association property="user" javaType="user" select="com.baizhi.fifth.dao.UserDAO.queryOne" column="userId"/>
+		<collection property="orderItems" javaType="list" ofType="orderItem" select="com.baizhi.fifth.dao.OrderItemDAO.queryByOrderId" column="id"/>
+	</resultMap>
+	<!-- 查询所有订单 -->
+	<select id="queryAll" resultMap="ordermap">
+		select id,num,addressId,elseMessage,status,createTime,total,userId from t_order
+	</select>
+	<!-- 根据订单id查询 -->
+	<select id="queryOne" resultMap="ordermap" parameterType="String">
+		select id,num,addressId,elseMessage,status,createTime,total,userId from t_order
+			where id=#{id}
+	</select>
+	<!-- 根据用户id查询 -->
+	<select id="queryByUserId" resultMap="ordermap" parameterType="String">
+		select id,num,addressId,elseMessage,status,createTime,total,userId from t_order
+			where userId=#{id}
+	</select>
+	<!-- 模糊查询 -->
+	<select id="queryLike" resultMap="ordermap" parameterType="String">
+		select id,num,addressId,elseMessage,status,createTime,total,userId from t_order
+			where ${type} like CONCAT('%',#{content},'%')
+	</select>
+	<!-- 添加订单 -->
+	<insert id="insert" parameterType="order">
+		insert into t_order values(#{id},#{num},#{address.id},#{elseMessage},#{status},#{createTime},#{total},#{user.id})
+	</insert>
+	<!--修改订单的地址-->
+	<update id="updateOrderAddress" parameterType="order">
+		update t_order set addressId=#{addressId} where id=#{id}
+	</update>
+	<!--删除订单-->
+	<delete id="delete" parameterType="String">
+		delete from t_order where id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.OrderItemDAO">
+	<resultMap id="oimap" type="orderItem">
+		<id column="id" property="id"/>
+		<result column="count" property="count"/>
+		<result column="sub" property="sub"/>
+		<association property="product" javaType="product" select="com.baizhi.fifth.dao.ProductDAO.queryOne" column="productId"/>
+	</resultMap>
+	<!-- 根据订单id查询所有订单项 -->
+	<select id="queryByOrderId" resultMap="oimap" parameterType="String">
+		select id,orderid,productId,count,sub from t_orderitem
+			where orderid=#{id}
+	</select>
+	<!--插入订单项-->
+	<insert id="insert" parameterType="orderItem">
+		insert into t_orderitem values(#{id},#{order.id},#{product.id},#{count},#{sub})
+	</insert>
+</mapper>

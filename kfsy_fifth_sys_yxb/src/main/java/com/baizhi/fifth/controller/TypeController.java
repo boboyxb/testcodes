@@ -1,11 +1,9 @@
 package com.baizhi.fifth.controller;
 
-import com.baizhi.fifth.entity.Admin;
 import com.baizhi.fifth.entity.Type;
 import com.baizhi.fifth.service.TypeService;
 import com.github.pagehelper.Page;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -31,6 +30,13 @@ public class TypeController {
         map.put("rows",types.getResult());
         map.put("total",types.getTotal());
         return map;
+    }
+    //查询所有分类
+    @RequestMapping("/queryAllTypes")
+    @ResponseBody
+    public List<Type> queryAllTypes(){
+        List<Type> types = typeService.queryAllTypes();
+        return types;
     }
     //删除分类
     @RequestMapping("/delete")

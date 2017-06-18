@@ -107,7 +107,7 @@
     }
     //关闭对话框
     function adminCloseDa() {
-        $dl.dialog('close', true);
+        $adminDL.dialog('close', true);
     }
 
     //添加管理员

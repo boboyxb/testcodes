@@ -2,6 +2,7 @@ package com.baizhi.fifth.dao;
 
 
 import com.baizhi.fifth.entity.Info;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ public interface InfoDAO extends BaseDAO<Info> {
     List<Info> queryByUserName(String name);
     //查询特定内容的评价数量
     Integer countLikeInfo(String content);
+    //模糊查询
+    List<Info> queryLike(@Param("type") String type, @Param("content") String content);
+
 }

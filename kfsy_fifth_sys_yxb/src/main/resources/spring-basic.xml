@@ -8,11 +8,13 @@
     <context:component-scan base-package="com">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <!--引入db.properties-->
+    <!--引入db.properties
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:com/baizhi/fifth/conf/db.properties"/>
-    </bean>
-    <!--配置数据源-->
+    </bean>-->
+    <!--第二种引入配置文件的方法-->
+    <context:property-placeholder location="classpath:com/baizhi/fifth/conf/db.properties"/>
+    <!--配置数据源   也就是连接池-->
     <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
         <property name="driverClassName" value="${mysql.driver}"/>
         <property name="url" value="${mysql.url}"/>
@@ -35,6 +37,7 @@
         <property name="mapperLocations" value="classpath:com/baizhi/fifth/mapper/*.xml" />
         <!-- 起别名 -->
         <property name="typeAliasesPackage" value="com.baizhi.fifth.entity" />
+        <property name="configLocation" value="classpath:mybatis-settings.xml"/>
         <!--配置分页插件-->
         <property name="plugins">
             <array>

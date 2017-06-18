@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.ProductDAO">
+	<resultMap id="productmap" type="product">
+		<id column="id" property="id" />
+		<result column="name" property="name"/>
+		<result column="indication" property="indication"/>
+		<result column="standard" property="standard"/>
+		<result column="price" property="price"/>
+		<result column="imagePath" property="imagePath"/>
+		<result column="stock" property="stock"/>
+		<association property="type" javaType="type" select="com.baizhi.fifth.dao.TypeDAO.queryOne" column="typeid"/>
+		<association property="medicine" javaType="medicine" select="com.baizhi.fifth.dao.MedicineDAO.queryOne" column="medicineId"/>
+	</resultMap>
+	<!--根据分类查询商品-->
+	<select id="queryByType" parameterType="String" resultMap="productmap">
+		select id,name,indication,standard,price,imagePath,typeid,medicineId,stock from t_product where typeid=#{typeId}
+	</select>
+	<!-- 根据id查询商品 -->
+	<select id="queryOne" parameterType="String" resultMap="productmap">
+		select id,name,indication,standard,price,imagePath,typeid,medicineId,stock from t_product where id=#{id}
+	</select>
+	<!-- 查询所有商品 -->
+	<select id="queryAll" resultMap="productmap">
+		select id,name,indication,standard,price,imagePath,typeid,medicineId,stock from t_product
+	</select>
+	<!-- 根据名字模糊查询 -->
+	<select id="queryLikeName" parameterType="String" resultMap="productmap">
+		select id,name,indication,standard,price,imagePath,typeid,medicineId,stock from t_product
+			where name like CONCAT('%',#{name},'%')
+	</select>
+	<!-- 添加商品 -->
+	<insert id="insert" parameterType="product">
+		insert into t_product values(#{id},#{name},#{indication},#{standard},#{price},#{imagePath},#{type.id},#{medicine.id},#{stock})
+	</insert>
+	<!--删除商品-->
+	<delete id="delete" parameterType="String">
+		delete from t_product where id=#{id}
+	</delete>
+	<!--更新商品-->
+	<update id="update" parameterType="product">
+		update t_product set name=#{name},indication=#{indication},standard=#{standard},price=#{price},imagePath=#{imagePath},typeid=#{type.id},medicineId=#{medicine.id},stock=#{stock} where id=#{id}
+	</update>
+	<!--更新商品-->
+	<update id="alterStock" parameterType="product">
+		update t_product set stock=#{stock} where id=#{id}
+	</update>
+</mapper>

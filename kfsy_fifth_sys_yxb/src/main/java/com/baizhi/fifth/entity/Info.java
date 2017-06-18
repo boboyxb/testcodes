@@ -1,15 +1,17 @@
 package com.baizhi.fifth.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Administrator on 2017/6/11.
- */
 public class Info  implements Serializable {
     //定义私有属性
     private String id;
     private Integer score;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JSONField(format ="yyyy-MM-dd",name="createTime")
     private Date createTime;
     private String content;
 

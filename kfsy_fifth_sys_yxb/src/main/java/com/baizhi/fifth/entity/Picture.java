@@ -10,7 +10,16 @@ public class Picture implements Serializable{
     private String imagePath;//图片路径
     private String imageType;//图片类型
 
+    private Medicine medicine;
     //set/get方法
+
+    public Medicine getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(Medicine medicine) {
+        this.medicine = medicine;
+    }
 
     public String getId() {
         return id;
@@ -40,10 +49,11 @@ public class Picture implements Serializable{
     public Picture() {
     }
 
-    public Picture(String id, String imagePath, String imageType) {
+    public Picture(String id, String imagePath, String imageType, Medicine medicine) {
         this.id = id;
         this.imagePath = imagePath;
         this.imageType = imageType;
+        this.medicine = medicine;
     }
 
     @Override
@@ -52,6 +62,7 @@ public class Picture implements Serializable{
                 "id='" + id + '\'' +
                 ", imagePath='" + imagePath + '\'' +
                 ", imageType='" + imageType + '\'' +
+                ", medicine=" + medicine +
                 '}';
     }
 }

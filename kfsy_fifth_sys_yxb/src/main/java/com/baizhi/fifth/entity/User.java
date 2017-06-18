@@ -1,5 +1,8 @@
 package com.baizhi.fifth.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,16 +12,28 @@ import java.util.List;
  */
 public class User implements Serializable {
     //用户属性
+    @ToExcel("主键")
     private String id;//主键
+    @ToExcel("姓名")
     private String name;//名称
+    @ToExcel("手机号")
     private String phone;//手机号
+    @ToExcel("密码")
     private String password;//密码
+    @ToExcel("私盐")
     private String salt;//私盐
+    @ToExcel("注册时间")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JSONField(format ="yyyy-MM-dd",name="registDate")
     private Date registDate;//创建时间
+    @ToExcel("注册状态")
     private String status;//状态
     //关系维护
+    @ToExcel("地址")
     private List<Address> addresses;
+    @ToExcel("评价")
     private List<Info> infos;
+    @ToExcel("订单")
     private List<Order> orders;
     //set/get方法
 

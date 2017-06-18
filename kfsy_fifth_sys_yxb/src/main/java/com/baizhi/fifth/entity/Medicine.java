@@ -1,17 +1,20 @@
 package com.baizhi.fifth.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/6/11.
- */
+
 public class Medicine implements Serializable {
     //定义私有属性
     private String id;
     private String unit;//单位
     private String nationalDrugName;//国药准字号
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JSONField(format ="yyyy-MM-dd",name="approvaldateOfNationalDrugName")
     private Date approvaldateOfNationalDrugName;//国药准字号批准日期
     private String ingredient;//明书成分
     private String description;//性状
@@ -22,36 +25,10 @@ public class Medicine implements Serializable {
     private String interaction;//药物相互作用
     private String depot;//贮藏
     private String packing;//包装
-    private Date expiryDate;//有效期
+    private String expiryDate;//有效期
     private String company;//生产企业
 
     private List<Picture> pictures;
-
-    public Medicine(String id, String unit, String nationalDrugName, Date approvaldateOfNationalDrugName, String ingredient, String description, String dosageAdministration, String sideEffects, String contraindications, String precaution, String interaction, String depot, String packing, Date expiryDate, String company) {
-        this.id = id;
-        this.unit = unit;
-        this.nationalDrugName = nationalDrugName;
-        this.approvaldateOfNationalDrugName = approvaldateOfNationalDrugName;
-        this.ingredient = ingredient;
-        this.description = description;
-        this.dosageAdministration = dosageAdministration;
-        this.sideEffects = sideEffects;
-        this.contraindications = contraindications;
-        this.precaution = precaution;
-        this.interaction = interaction;
-        this.depot = depot;
-        this.packing = packing;
-        this.expiryDate = expiryDate;
-        this.company = company;
-    }
-
-    public List<Picture> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
-    }
 
     @Override
     public String toString() {
@@ -69,9 +46,13 @@ public class Medicine implements Serializable {
                 ", interaction='" + interaction + '\'' +
                 ", depot='" + depot + '\'' +
                 ", packing='" + packing + '\'' +
-                ", expiryDate=" + expiryDate +
+                ", expiryDate='" + expiryDate + '\'' +
                 ", company='" + company + '\'' +
+                ", pictures=" + pictures +
                 '}';
+    }
+
+    public Medicine() {
     }
 
     public String getId() {
@@ -178,11 +159,11 @@ public class Medicine implements Serializable {
         this.packing = packing;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
@@ -194,7 +175,31 @@ public class Medicine implements Serializable {
         this.company = company;
     }
 
-    public Medicine() {
+    public List<Picture> getPictures() {
+        return pictures;
+    }
 
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
+    public Medicine(String id, String unit, String nationalDrugName, Date approvaldateOfNationalDrugName, String ingredient, String description, String dosageAdministration, String sideEffects, String contraindications, String precaution, String interaction, String depot, String packing, String expiryDate, String company, List<Picture> pictures) {
+
+        this.id = id;
+        this.unit = unit;
+        this.nationalDrugName = nationalDrugName;
+        this.approvaldateOfNationalDrugName = approvaldateOfNationalDrugName;
+        this.ingredient = ingredient;
+        this.description = description;
+        this.dosageAdministration = dosageAdministration;
+        this.sideEffects = sideEffects;
+        this.contraindications = contraindications;
+        this.precaution = precaution;
+        this.interaction = interaction;
+        this.depot = depot;
+        this.packing = packing;
+        this.expiryDate = expiryDate;
+        this.company = company;
+        this.pictures = pictures;
     }
 }

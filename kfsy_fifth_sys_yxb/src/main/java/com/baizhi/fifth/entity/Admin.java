@@ -2,9 +2,7 @@ package com.baizhi.fifth.entity;
 
 import java.io.Serializable;
 
-/**
- * Created by Administrator on 2017/6/11.
- */
+
 public class Admin implements Serializable {
     //定义私有属性
     private String id;//管理员主键

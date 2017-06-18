@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.InfoDAO">
+	<resultMap id="infomap" type="info">
+		<id column="id" property="id" />
+		<result column="score" property="score" />
+		<result column="createTime" property="createTime" />
+		<result column="content" property="content" />
+		<association property="user" javaType="user" select="com.baizhi.fifth.dao.UserDAO.queryOne" column="userId"/>
+		<association property="order" javaType="order" select="com.baizhi.fifth.dao.OrderDAO.queryOne" column="id"/>
+	</resultMap>
+	<!-- 查询所有评价 -->
+	<select id="queryAll" resultMap="infomap">
+		select id,score,createTime,content,userid,orderid from t_info
+	</select>
+	<!-- 根据订单id查询
+	<select id="queryOne" resultMap="infomap" parameterType="String">
+		select id,score,createTime,content,userid,orderid from t_info
+			where orderid=#{id}
+	</select>
+	&lt;!&ndash; 根据用户id查询评价 &ndash;&gt;
+	<select id="queryByUserId" resultMap="infomap" parameterType="String">
+		select id,score,createTime,content,userid,orderid from t_info
+			where userid=#{id}
+	</select>-->
+	<!-- 模糊查询 -->
+	<select id="queryLike" resultMap="infomap" parameterType="String">
+		select id,score,createTime,content,userid,orderid from t_info
+			where ${type} like CONCAT('%',#{content},'%')
+	</select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.PictureDAO">
+	<!-- 根据id查询图片 -->
+	<select id="queryOne" parameterType="String" resultType="picture">
+		select id,imagePath,imageType,medicineId from t_picture where id=#{id}
+	</select>
+	<!-- 根据药品id查询图片 -->
+	<select id="queryByMedicineId" parameterType="String" resultType="picture">
+		select id,imagePath,imageType,medicineId from t_picture where medicineId=#{id}
+	</select>
+	<!-- 添加药品图片 -->
+	<insert id="insert" parameterType="picture">
+		insert into t_picture values(#{id},#{imagePath},#{imageType},#{medicine.id})
+	</insert>
+	<!--删除药品图片-->
+	<delete id="delete" parameterType="String">
+		delete from t_picture where id=#{id}
+	</delete>
+	<!--删除药品图片-->
+	<delete id="deleteByMedicineId" parameterType="String">
+		delete from t_picture where medicineId=#{id}
+	</delete>
+</mapper>

@@ -11,8 +11,19 @@ public class OrderItem implements Serializable {
     private Double sub;//小结
     //关系维护
     private Order order;//订单
-    private Medicine medicine;//药品
-    //get、set方法
+    private Product product;//商品
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id='" + id + '\'' +
+                ", count=" + count +
+                ", sub=" + sub +
+                ", order=" + order +
+                ", product=" + product +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
@@ -45,32 +56,24 @@ public class OrderItem implements Serializable {
         this.order = order;
     }
 
-    public Medicine getMedicine() {
-        return medicine;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-    //构造方法
 
     public OrderItem() {
+
     }
 
-    public OrderItem(String id, Integer count, Double sub, Order order, Medicine medicine) {
+    public OrderItem(String id, Integer count, Double sub, Order order, Product product) {
+
         this.id = id;
         this.count = count;
         this.sub = sub;
         this.order = order;
-        this.medicine = medicine;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "id='" + id + '\'' +
-                ", count=" + count +
-                ", sub=" + sub +
-                '}';
+        this.product = product;
     }
 }

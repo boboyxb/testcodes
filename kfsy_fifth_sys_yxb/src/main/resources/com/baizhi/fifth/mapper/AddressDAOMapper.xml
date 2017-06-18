@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.fifth.dao.AddressDAO">
+	<!-- 根据id查询 -->
+	<select id="queryOne" resultType="address" parameterType="String">
+		select id,recevieAddress,detailAddress,personName,phone,userid from t_address
+			where id=#{id}
+	</select>
+	<!-- 根据用户id查询所有地址 -->
+	<select id="queryByUserId" resultType="address" parameterType="String">
+		select id,recevieAddress,detailAddress,personName,phone,userid from t_address
+			where userid=#{id}
+	</select>
+	<insert id="insert" parameterType="address">
+		insert into t_address values(#{id},#{recevieAddress},#{detailAddress},#{personName},#{phone},#{user.id})
+	</insert>
+	<delete id="delete" parameterType="String">
+		delete from t_address where id=#{id}
+	</delete>
+	<update id="update" parameterType="address">
+		update  t_address set recevieAddress=#{recevieAddress},detailAddress=#{detailAddress},personName=#{personName},phone=#{phone}
+			where id=#{id}
+	</update>
+</mapper>

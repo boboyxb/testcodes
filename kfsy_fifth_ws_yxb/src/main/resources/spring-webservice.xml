@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+    <import resource="classpath:spring-basic.xml"/>
+    <import resource="classpath:spring-data-redis.xml"/>
+   <!-- <bean class="com.alibaba.fastjson.support.jaxrs.FastJsonProvider" id="jsonProvider" />
+
+
+    <bean class="com.baizhi.fifth.webservice.impl.UserWSImpl" id="userWS" />
+    &lt;!&ndash;发布Webservice  cxf形式&ndash;&gt;
+    <jaxrs:server address="/us" serviceClass="com.baizhi.fifth.webservice.UserWS">
+        <jaxrs:serviceBeans>
+            <ref bean="userWS" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider" />
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <bean class="com.baizhi.fifth.webservice.impl.FirstPageWSImpl" id="firstPageWS"/>
+    <jaxrs:server address="/fp" serviceClass="com.baizhi.fifth.webservice.FirstPageWS">
+        <jaxrs:serviceBeans>
+            <ref bean="firstPageWS" />
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider" />
+        </jaxrs:providers>
+    </jaxrs:server>-->
+</beans>

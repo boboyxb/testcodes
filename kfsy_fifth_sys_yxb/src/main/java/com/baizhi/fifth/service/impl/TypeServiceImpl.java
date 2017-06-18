@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,6 +24,11 @@ public class TypeServiceImpl implements TypeService {
         Page<Type> pages= PageHelper.startPage(page,rows);
         typeDAO.queryAll();
         return pages;
+    }
+    @Transactional(propagation= Propagation.SUPPORTS,readOnly=true)
+    public List<Type> queryAllTypes(){
+        List<Type> types = typeDAO.queryAll();
+        return types;
     }
 
     public void delete(String id) {

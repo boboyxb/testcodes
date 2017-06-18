@@ -1,17 +1,19 @@
 package com.baizhi.fifth.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/6/11.
- */
 public class Order implements Serializable {
     private String id;
-    private String name;
+    private String num;
     private String elseMessage;
     private String status;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JSONField(format ="yyyy-MM-dd",name="createTime")
     private Date createTime;
     private Double total;
     //关系属性
@@ -22,23 +24,31 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(String id, String name, String elseMessage, String status, Date createTime, Double total, Address address, User user) {
+    public Order(String id, String num, String elseMessage, String status, Date createTime, Double total, Address address, User user, List<OrderItem> orderItems) {
         this.id = id;
-        this.name = name;
+        this.num = num;
         this.elseMessage = elseMessage;
         this.status = status;
         this.createTime = createTime;
         this.total = total;
         this.address = address;
         this.user = user;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", num='" + num + '\'' +
+                ", elseMessage='" + elseMessage + '\'' +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", total=" + total +
+                ", address=" + address +
+                ", user=" + user +
+                ", orderItems=" + orderItems +
+                '}';
     }
 
     public String getId() {
@@ -49,12 +59,12 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNum() {
+        return num;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public String getElseMessage() {
@@ -105,18 +115,11 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", elseMessage='" + elseMessage + '\'' +
-                ", status='" + status + '\'' +
-                ", createTime=" + createTime +
-                ", total=" + total +
-                ", address=" + address +
-                ", user=" + user +
-                ", orderItems=" + orderItems +
-                '}';
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

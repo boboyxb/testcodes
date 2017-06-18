@@ -9,9 +9,10 @@
 	<select id="queryAll" resultType="user">
 		select id,name,phone,password,salt,registDate,status from t_user
 	</select>
-	<!-- 根据名字查用户 -->
-	<select id="queryByName" parameterType="String" resultType="user">
-		select id,name,phone,password,salt,registDate,status from t_user where name=#{name}
+	<!-- 模糊查询 -->
+	<select id="queryLike" parameterType="String" resultType="user">
+		select id,name,phone,password,salt,registDate,status from t_user
+			where ${type} like CONCAT('%',#{content},'%')
 	</select>
 	<!-- 根据手机号查用户 -->
 	<select id="queryByPhone" parameterType="String" resultType="user">
@@ -24,7 +25,8 @@
 	<delete id="delete" parameterType="String">
 		delete from t_user where id=#{id}
 	</delete>
-	<update id="update" parameterType="user">
-		update t_user set name=#{name},phone=#{phone},password=#{password},salt=#{salt},registDate=#{registDate},status=#{status} where id=#{id}
-	</update>
+	<!--记录某一时间到某一时间的人数-->
+	<select id="countRegist" parameterType="Date" resultType="Integer">
+		select count(id) from t_user where registDate between #{start} and #{end}
+	</select>
 </mapper>

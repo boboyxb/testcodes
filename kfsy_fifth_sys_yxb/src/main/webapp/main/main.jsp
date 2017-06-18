@@ -5,10 +5,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/themes/icon.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/css/IconExtension.css" />
+
     <script src="${pageContext.request.contextPath}/easyui/js/jquery.min.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/jquery.easyui.min.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/easyui-lang-zh_CN.js" ></script>
     <script src="${pageContext.request.contextPath}/easyui/js/form.validator.rules.js" ></script>
+    <script src="${pageContext.request.contextPath}/echar/echarts.js" ></script>
     <script>
         var $aa,$tt;
         $(function(){

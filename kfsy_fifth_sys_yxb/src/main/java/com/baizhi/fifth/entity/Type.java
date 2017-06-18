@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Type implements Serializable {
     private String id;//主键
-    private String name;//姓名
+    private String name;//名称
     private String href;
     private List<Product> products;
 
